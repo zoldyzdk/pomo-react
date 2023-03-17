@@ -21,7 +21,7 @@ const NavBar = () => {
   )
 }
 
-const Themes = ({ OnChange }) => {
+const Themes = ({ OnChange }: any) => {
   return (
     <select
       onChange={(e) => OnChange(e.target.value)}
@@ -79,7 +79,7 @@ const [theme, setTheme] = useState('dark');
           </div>
         </div>
         <TwentyFiveMinTimer />
-        <Themes OnChange={(theme) => setTheme(theme)}/>
+        <Themes OnChange={(theme: string) => setTheme(theme)}/>
       </div>
     </div>
   );
