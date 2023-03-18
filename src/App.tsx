@@ -61,7 +61,6 @@ const Timer = () => {
     <div className=" flex flex-col p-10 gap-10 items-center">
       <span className="countdown font-mono text-7xl">
         <span className="" style={ spanStyle }></span>:
-        <span style={spanZero}></span>
       </span>
       <button className="btn btn-outline btn-lg">
         Começar!
@@ -69,24 +68,17 @@ const Timer = () => {
     </div>
     </>
   );
-
-
 }
+
 
 function App() {
 const [theme, setTheme] = useState('dark');
+
 
   return (
     <div data-theme={theme} className="App h-[100svh] grid justify-items-center">
       <div className=" max-w-3xl flex flex-col items-center">
         <NavBar />
-        <div className=" p-2 sm:p-10 text-center flex flex-col items-center justify-center">
-          <div className="navbar bg-base-100 text-base w-full flex flex-wrap justify-center">
-            <button className="btn btn-ghost btn-active btn-sm normal-case h-1 p-1">Pomodoro</button>
-            <a className="btn btn-ghost normal-case btn-sm p-1">Intervalo Curto</a>
-            <a className="btn btn-ghost normal-case btn-sm p-1">Intervalo Longo</a>
-          </div>
-        </div>
         <TwentyFiveMinTimer />
         <Themes OnChange={(theme: string) => setTheme(theme)}/>
       </div>
