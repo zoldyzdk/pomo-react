@@ -14,7 +14,7 @@ const TwentyFiveMinTimer = () => {
     }
 
     useEffect(() => {
-        let interval = null;
+        let interval: (number | any) = null;
         if (isActive) {
             interval = setInterval(() => {
                 setSeconds(seconds => seconds - 1);
@@ -25,16 +25,18 @@ const TwentyFiveMinTimer = () => {
         return () => clearInterval(interval);
     }, [isActive, seconds]);
 
+    interface SpanStyle extends React.CSSProperties{
+        '--value': number;
+    }
+
+    const spanMin: SpanStyle = { "--value": Math.floor(seconds / 60) };
+    const spanSec: SpanStyle = { "--value": seconds % 60}
+
     return (
-        // <div>
-        //     <h1>{Math.floor(seconds / 60)}:{seconds % 60 < 10 ? '0' : ''}{seconds % 60}</h1>
-        //     <button onClick={toggle}>{isActive ? 'Pause' : 'Start'}</button>
-        //     <button onClick={reset}>Reset</button>
-        // </div>
         <div className=" flex flex-col p-10 gap-10 items-center">
           <span className="countdown font-mono text-7xl">
-            <span className="" style={{ "--value": Math.floor(seconds / 60) }}></span>:
-            <span style={{ "--value": seconds % 60}}></span>
+            <span className="" style={spanMin}></span>:
+            <span style={spanSec}></span>
           </span>
           <div className="flex gap-4">
 
