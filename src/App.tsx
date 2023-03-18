@@ -49,16 +49,28 @@ const Themes = ({ OnChange }: any) => {
 const Timer = () => {
   const [count, setCount] = useState(0)
 
+  interface SpanStyle extends React.CSSProperties{
+    '--value': number;
+  }
+
+  interface Props {
+    count: number;
+  }
+  const spanStyle: SpanStyle = { '--value': count };
+  const spanZero: SpanStyle = { '--value': 0 }
+
   return (
+    <>
     <div className=" flex flex-col p-10 gap-10 items-center">
       <span className="countdown font-mono text-7xl">
-        <span className="" style={{ "--value": count }}></span>:
-        <span style={{ "--value": 0 }}></span>
+        <span className="" style={ spanStyle }></span>:
+        <span style={spanZero}></span>
       </span>
       <button className="btn btn-outline btn-lg">
         Começar!
       </button>
     </div>
+    </>
   );
 
 
