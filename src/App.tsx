@@ -53,9 +53,6 @@ const Timer = () => {
     '--value': number;
   }
 
-  interface Props {
-    count: number;
-  }
   const spanStyle: SpanStyle = { '--value': count };
   const spanZero: SpanStyle = { '--value': 0 }
 
