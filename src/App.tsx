@@ -70,11 +70,8 @@ const Timer = () => {
   );
 }
 
-
 function App() {
 const [theme, setTheme] = useState('dark');
-
-
   return (
     <div data-theme={theme} className="App h-[100svh] grid justify-items-center">
       <div className=" max-w-3xl flex flex-col items-center">
