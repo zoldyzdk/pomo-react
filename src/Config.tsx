@@ -3,7 +3,7 @@
 const Config = ({ invi, onClose, children }) => {
  if ( !invi ) return null;
  return (
-   <div className=" fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center ">
+   <div className=" fixed inset-0 bg-black bg-opacity-25 backdrop-blur-lg flex justify-center items-center ">
      <div className=" artboard phone-1 flex flex-col ">
        <button
            onClick={ () => onClose()}

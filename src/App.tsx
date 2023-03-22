@@ -77,21 +77,25 @@ function App() {
     )
   }
 
-  const TempoPomo = () => {
-    const [value, setValue] = useState(30)
+  const TempoPomo = ({max, def}) => {
+    const [value, setValue] = useState(def)
     return (
     <div className="flex flex-col justify-center items-center">
-      <input onChange={ (e) => setValue(Number(e.target.value))} type="range" min="10" max="120" className="range range-primary" step="5" defaultValue={30} />
-      <div className="w-full flex justify-between text-xs px-2">
+      <input onChange={ (e) => setValue(Number(e.target.value))} type="range" min="10" max={max} className="range range-primary" step="5" defaultValue={def} />
+      <div className="w-full flex justify-between px-2">
         <span>|</span>
         <span>|</span>
         <span>|</span>
         <span>|</span>
         <span>|</span>
       </div>
-      <div className=" text-xl text-secondary">{`Minutes: ${value}`}</div>
+      <div className=" text-xl ">{`Minutes: ${value}`}</div>
     </div>
     )
+  }
+
+  const storeChanges = (pomo, intCurto) => {
+
   }
 
 const [theme, setTheme] = useState('dark');
@@ -105,8 +109,18 @@ const [theme, setTheme] = useState('dark');
             onClose={ () => setOpenModal(false)}
             invi={openModal}
         >
-          <h3 className="text-lg text-primary">Tempo do Pomodoro:</h3>
-          <TempoPomo />
+          <div className="flex flex-col gap-4">
+            <div>
+              <h3 className="text-lg text-primary mb-4 uppercase">Tempo do Pomodoro:</h3>
+              <TempoPomo max={120} def={25}/>
+            </div>
+            <div className="">
+              <h3 className="text-lg text-primary mb-4 uppercase">
+                Intervalo Curto:
+              </h3>
+              <TempoPomo max={30} def={10}/>
+            </div>
+          </div>
 
         </Config>
       </div>
