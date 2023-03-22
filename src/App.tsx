@@ -2,24 +2,8 @@ import {useEffect, useState} from 'react'
 import './App.css'
 import github from "./assets/icons8-github-squared.svg"
 import TwentyFiveMinTimer from "./TwentyFiveMinTimer";
+import Config from "./Config"
 
-const NavBar = () => {
-  return (
-      <div className="navbar bg-base-100">
-        <div className=" flex-1">
-          <a className="btn btn-ghost normal-case text-xl" href="https://github.com/Sherlockzen/pomo-react" target="_blank">
-            PomoReact
-          <img className=" w-12" src={github} alt="Github Icon" />
-          </a>
-        </div>
-        <div className="flex-none">
-          <ul className="menu menu-horizontal px-1">
-            <li><a>Config</a></li>
-          </ul>
-        </div>
-      </div>
-  )
-}
 
 const Themes = ({ OnChange }: any) => {
   return (
@@ -71,6 +55,45 @@ const Timer = () => {
 }
 
 function App() {
+  const [openModal, setOpenModal] = useState(false)
+
+  const NavBar = () => {
+    return (
+        <div className="navbar bg-base-100">
+          <div className=" flex-1">
+            <a className="btn btn-ghost normal-case text-xl" href="https://github.com/Sherlockzen/pomo-react" target="_blank">
+              PomoReact
+              <img className=" w-12" src={github} alt="Github Icon" />
+            </a>
+          </div>
+          <div className="flex-none">
+            <ul className="menu menu-horizontal px-1">
+              <li><a
+                  onClick={ () => setOpenModal(true)}
+                  className="btn-sm">CONFIG</a></li>
+            </ul>
+          </div>
+        </div>
+    )
+  }
+
+  const TempoPomo = () => {
+    const [value, setValue] = useState(30)
+    return (
+    <div className="flex flex-col justify-center items-center">
+      <input onChange={ (e) => setValue(Number(e.target.value))} type="range" min="10" max="120" className="range range-primary" step="5" defaultValue={30} />
+      <div className="w-full flex justify-between text-xs px-2">
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+        <span>|</span>
+      </div>
+      <div className=" text-xl text-secondary">{`Minutes: ${value}`}</div>
+    </div>
+    )
+  }
+
 const [theme, setTheme] = useState('dark');
   return (
     <div data-theme={theme} className="App h-[100svh] grid justify-items-center">
@@ -78,6 +101,14 @@ const [theme, setTheme] = useState('dark');
         <NavBar />
         <TwentyFiveMinTimer />
         <Themes OnChange={(theme: string) => setTheme(theme)}/>
+        <Config
+            onClose={ () => setOpenModal(false)}
+            invi={openModal}
+        >
+          <h3 className="text-lg text-primary">Tempo do Pomodoro:</h3>
+          <TempoPomo />
+
+        </Config>
       </div>
     </div>
   );
