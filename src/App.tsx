@@ -55,7 +55,9 @@ const Timer = () => {
 }
 
 function App() {
-  const [openModal, setOpenModal] = useState(false)
+  const [openModal, setOpenModal] = useState(false);
+  const [pomoMin, setPomoMin] = useState(0);
+  const [intervMin, setIntervMin] = useState(0);
 
   const NavBar = () => {
     return (
@@ -77,22 +79,7 @@ function App() {
     )
   }
 
-  const TempoPomo = ({max, def}) => {
-    const [value, setValue] = useState(def)
-    return (
-    <div className="flex flex-col justify-center items-center">
-      <input onChange={ (e) => setValue(Number(e.target.value))} type="range" min="10" max={max} className="range range-primary" step="5" defaultValue={def} />
-      <div className="w-full flex justify-between px-2">
-        <span>|</span>
-        <span>|</span>
-        <span>|</span>
-        <span>|</span>
-        <span>|</span>
-      </div>
-      <div className=" text-xl ">{`Minutes: ${value}`}</div>
-    </div>
-    )
-  }
+
 
   const storeChanges = (pomo, intCurto) => {
 
@@ -109,18 +96,7 @@ const [theme, setTheme] = useState('dark');
             onClose={ () => setOpenModal(false)}
             invi={openModal}
         >
-          <div className="flex flex-col gap-4">
-            <div>
-              <h3 className="text-lg text-primary mb-4 uppercase">Tempo do Pomodoro:</h3>
-              <TempoPomo max={120} def={25}/>
-            </div>
-            <div className="">
-              <h3 className="text-lg text-primary mb-4 uppercase">
-                Intervalo Curto:
-              </h3>
-              <TempoPomo max={30} def={10}/>
-            </div>
-          </div>
+
 
         </Config>
       </div>
